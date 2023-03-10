@@ -190,6 +190,28 @@ void setup()
   fuzzy.addFuzzyInput (&fuzzyHumi);
   fuzzy.addFuzzyOutput(&fuzzyHeatIndex);
 
+  FuzzyRule fuzzyRule1  = crt_rule1();
+  FuzzyRule fuzzyRule2  = crt_rule2();
+  FuzzyRule fuzzyRule3  = crt_rule3();
+  FuzzyRule fuzzyRule4  = crt_rule4();
+  FuzzyRule fuzzyRule5  = crt_rule5();
+  FuzzyRule fuzzyRule6  = crt_rule6();
+  FuzzyRule fuzzyRule7  = crt_rule7();
+  FuzzyRule fuzzyRule8  = crt_rule8();
+  FuzzyRule fuzzyRule9  = crt_rule9();
+  FuzzyRule fuzzyRule10 = crt_rule10();
+
+  fuzzy.addFuzzyRule(&fuzzyRule1);
+  fuzzy.addFuzzyRule(&fuzzyRule2);
+  fuzzy.addFuzzyRule(&fuzzyRule3);
+  fuzzy.addFuzzyRule(&fuzzyRule4);
+  fuzzy.addFuzzyRule(&fuzzyRule5);
+  fuzzy.addFuzzyRule(&fuzzyRule6);
+  fuzzy.addFuzzyRule(&fuzzyRule7);
+  fuzzy.addFuzzyRule(&fuzzyRule8);
+  fuzzy.addFuzzyRule(&fuzzyRule9);
+  fuzzy.addFuzzyRule(&fuzzyRule10);
+
 }
 
 
