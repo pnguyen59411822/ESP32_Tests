@@ -423,8 +423,9 @@ FuzzyRuleConsequent crt_consequent_hazardous()
 */
 FuzzyRule crt_rule1()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_cold();
+  FuzzyRuleConsequent consequent = crt_consequent_noHeat();
+  FuzzyRule           rule       = FuzzyRule(1, &antecedent, &consequent);
 
   return rule;
 }
@@ -437,8 +438,9 @@ FuzzyRule crt_rule1()
 */
 FuzzyRule crt_rule2()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_cool();
+  FuzzyRuleConsequent consequent = crt_consequent_comfort();
+  FuzzyRule           rule       = FuzzyRule(2, &antecedent, &consequent);
 
   return rule;
 }
@@ -454,8 +456,9 @@ FuzzyRule crt_rule2()
 */
 FuzzyRule crt_rule3()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_warm_AndVeryDryToNormal();
+  FuzzyRuleConsequent consequent = crt_consequent_discomfort();
+  FuzzyRule           rule       = FuzzyRule(3, &antecedent, &consequent);
 
   return rule;
 }
@@ -471,8 +474,9 @@ FuzzyRule crt_rule3()
 */
 FuzzyRule crt_rule4()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_warm_AndWetToVeryWet();
+  FuzzyRuleConsequent consequent = crt_consequent_caution();
+  FuzzyRule           rule       = FuzzyRule(4, &antecedent, &consequent);
 
   return rule;
 }
@@ -488,8 +492,9 @@ FuzzyRule crt_rule4()
 */
 FuzzyRule crt_rule5()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_hot_AndVeryDryToDry();
+  FuzzyRuleConsequent consequent = crt_consequent_caution();
+  FuzzyRule           rule       = FuzzyRule(5, &antecedent, &consequent);
 
   return rule;
 }
@@ -505,8 +510,9 @@ FuzzyRule crt_rule5()
 */
 FuzzyRule crt_rule6()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_hot_AndNormal();
+  FuzzyRuleConsequent consequent = crt_consequent_dangerous();
+  FuzzyRule           rule       = FuzzyRule(6, &antecedent, &consequent);
 
   return rule;
 }
@@ -522,8 +528,9 @@ FuzzyRule crt_rule6()
 */
 FuzzyRule crt_rule7()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_hot_AndWetToVeryWet();
+  FuzzyRuleConsequent consequent = crt_consequent_hazardous();
+  FuzzyRule           rule       = FuzzyRule(7, &antecedent, &consequent);
 
   return rule;
 }
@@ -539,8 +546,9 @@ FuzzyRule crt_rule7()
 */
 FuzzyRule crt_rule8()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_veryHot_AndVeryDry();
+  FuzzyRuleConsequent consequent = crt_consequent_dangerous();
+  FuzzyRule           rule       = FuzzyRule(8, &antecedent, &consequent);
 
   return rule;
 }
@@ -556,8 +564,9 @@ FuzzyRule crt_rule8()
 */
 FuzzyRule crt_rule9()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_veryHot_AndDryToVeryWet();
+  FuzzyRuleConsequent consequent = crt_consequent_hazardous();
+  FuzzyRule           rule       = FuzzyRule(9, &antecedent, &consequent);
 
   return rule;
 }
@@ -572,8 +581,9 @@ FuzzyRule crt_rule9()
 */
 FuzzyRule crt_rule10()
 {
-  FuzzyRule rule = FuzzyRule();
-
+  FuzzyRuleAntecedent antecedent = crt_antecedent_scorching();
+  FuzzyRuleConsequent consequent = crt_consequent_hazardous();
+  FuzzyRule           rule       = FuzzyRule(10, &antecedent, &consequent);
 
   return rule;
 }
