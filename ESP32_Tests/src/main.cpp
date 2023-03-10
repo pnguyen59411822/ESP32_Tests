@@ -417,9 +417,8 @@ FuzzyRuleConsequent crt_consequent_hazardous()
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   the temperature is <cold>
+ *  Then the heat index  is <no heat>
  *  
 */
 FuzzyRule crt_rule1(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -432,9 +431,8 @@ FuzzyRule crt_rule1(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   the temperature is <cool>
+ *  Then the heat index  is <comfort>
  *  
 */
 FuzzyRule crt_rule2(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -447,9 +445,11 @@ FuzzyRule crt_rule2(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <warm>
+ *     - The humidity    is <very dry> to <normal>
+ *  Then 
+ *     - The heat index  is <discomfort>
  *  
 */
 FuzzyRule crt_rule3(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -462,9 +462,11 @@ FuzzyRule crt_rule3(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <warm>
+ *     - The humidity    is <wet> to <very wet>
+ *  Then 
+ *     - The heat index  is <caution>
  *  
 */
 FuzzyRule crt_rule4(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -477,9 +479,11 @@ FuzzyRule crt_rule4(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <hot>
+ *     - The humidity    is <very dry> to <dry>
+ *  Then 
+ *     - The heat index  is <caution>
  *  
 */
 FuzzyRule crt_rule5(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -492,9 +496,11 @@ FuzzyRule crt_rule5(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <hot>
+ *     - The humidity    is <normal>
+ *  Then 
+ *     - The heat index  is <dangerous>
  *  
 */
 FuzzyRule crt_rule6(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -507,9 +513,11 @@ FuzzyRule crt_rule6(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <hot>
+ *     - The humidity    is <wet> to <very wet>
+ *  Then 
+ *     - The heat index  is <hazardous>
  *  
 */
 FuzzyRule crt_rule7(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -522,9 +530,11 @@ FuzzyRule crt_rule7(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <very hot>
+ *     - The humidity    is <very dry>
+ *  Then 
+ *     - The heat index  is <dangerous>
  *  
 */
 FuzzyRule crt_rule8(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -537,9 +547,11 @@ FuzzyRule crt_rule8(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <very hot>
+ *     - The humidity    is <dry> to <very wet>
+ *  Then 
+ *     - The heat index  is <hazardous>
  *  
 */
 FuzzyRule crt_rule9(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
@@ -552,9 +564,10 @@ FuzzyRule crt_rule9(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
 
 
 /**
- *  If
- *    - 
- *  Then
+ *  If   
+ *     - The temperature is <scorching>
+ *  Then 
+ *     - The heat index  is <hazardous>
  *  
 */
 FuzzyRule crt_rule10(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
