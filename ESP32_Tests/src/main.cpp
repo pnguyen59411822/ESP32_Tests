@@ -1,9 +1,16 @@
 #include <Arduino.h>
 
-void setup() {
-  // put your setup code here, to run once:
+#include "log_service.h"
+#include "DHT_service.h"
+
+void setup() 
+{
+  Log_init();
+  DHT_init();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+
+void loop() 
+{
+  DHT_upd();
 }

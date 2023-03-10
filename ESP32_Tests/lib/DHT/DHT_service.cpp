@@ -7,6 +7,8 @@
 #include "DHT_service.h"
 #include "DHT_const.h"
 
+#include "log_service.h"
+
 
 /* ==================================================
 ** Macro definition
@@ -98,7 +100,7 @@ void DHT_upd()
     // Check if any reads failed and exit early (to try again).
     if (isnan(h) || isnan(t) || isnan(f))
     {
-        Serial.println(F("Failed to read from DHT sensor!"));
+        LOG_E("[DHT] Failed to read from DHT sensor!");
         return;
     }
 
@@ -108,5 +110,5 @@ void DHT_upd()
     hiC         = dht.computeHeatIndex(t, h, false);
     hiF         = dht.computeHeatIndex(t, h);
 
-    Serial.printf("(%u) [DHT][UPD] Humidity: %.2f% | Temperature: %.2f°C  %.2f°F | Head index: %.2f°C  %.2f°F\n", millis(), h, t, f, hiC, hiF);
+    LOG_I("[DHT][UPD] Humidity: %.2f% | Temperature: %.2f°C  %.2f°F | Head index: %.2f°C  %.2f°F\n", h, t, f, hiC, hiF);
 }
