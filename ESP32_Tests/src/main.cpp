@@ -361,3 +361,58 @@ FuzzyRuleAntecedent crt_antecedent_scorching()
   return antecedent;
 }
 
+
+FuzzyRuleConsequent crt_consequent_noHeat()
+{
+  FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
+  consequent.addOutput(&noHeat);
+
+  return consequent;
+}
+
+
+FuzzyRuleConsequent crt_consequent_comfort()
+{
+  FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
+  consequent.addOutput(&)comfort;
+
+  return consequent;
+}
+
+
+FuzzyRuleConsequent crt_consequent_discomfort()
+{
+  FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
+  consequent.addOutput(&discomfort);
+
+  return consequent;
+}
+
+
+FuzzyRuleConsequent crt_consequent_caution()
+{
+  FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
+  consequent.addOutput(&caution);
+
+  return consequent;
+}
+
+
+FuzzyRuleConsequent crt_consequent_dangerous()
+{
+  FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
+  consequent.addOutput(&dangerous);
+
+  return consequent;
+}
+
+
+FuzzyRuleConsequent crt_consequent_hazardous()
+{
+  FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
+  consequent.addOutput(&hazardous);
+
+  return consequent;
+}
+
+
