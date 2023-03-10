@@ -247,3 +247,117 @@ FuzzyOutput crt_fuzzyHeatIndex()
 
   return fuzzyOutput;
 }
+
+
+FuzzyRuleAntecedent crt_antecedent_cold()
+{
+  FuzzyRuleAntecedent antecedent = FuzzyRuleAntecedent();
+
+  antecedent.joinSingle(&cold);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_cool()
+{
+  FuzzyRuleAntecedent antecedent = FuzzyRuleAntecedent();
+
+  antecedent.joinSingle(&cool);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_warm_AndVeryDryToNormal()
+{
+  FuzzyRuleAntecedent antecedent      = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent veryDryToDry    = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent veryDryToNormal = FuzzyRuleAntecedent();
+
+  veryDryToDry.joinWithOR    (&veryDry,      &dry);
+  veryDryToNormal.joinWithOR (&veryDryToDry, &normal);
+  antecedent.joinWithAND     (&warm, &veryDryToNormal);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_warm_AndWetToVeryWet()
+{
+  FuzzyRuleAntecedent antecedent   = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent wetToVeryWet = FuzzyRuleAntecedent();
+
+  wetToVeryWet.joinWithOR (&wet,  &veryWet);
+  antecedent.joinWithAND  (&warm, &wetToVeryWet);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_hot_AndVeryDryToDry()
+{
+  FuzzyRuleAntecedent antecedent   = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent veryDryToDry = FuzzyRuleAntecedent();
+
+  veryDryToDry.joinWithOR (&veryDry,  &dry);
+  antecedent.joinWithAND  (&hot, &veryDryToDry);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_hot_AndNormal()
+{
+  FuzzyRuleAntecedent antecedent = FuzzyRuleAntecedent();
+  antecedent.joinWithAND (&hot, &normal);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_hot_AndWetToVeryWet()
+{
+  FuzzyRuleAntecedent antecedent   = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent wetToVeryWet = FuzzyRuleAntecedent();
+
+  wetToVeryWet.joinWithOR (&wet,  &veryWet);
+  antecedent.joinWithAND (&hot, &wetToVeryWet);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_veryHot_AndVeryDry()
+{
+  FuzzyRuleAntecedent antecedent = FuzzyRuleAntecedent();
+  antecedent.joinWithAND (&veryHot, &veryDry);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_veryHot_AndDryToVeryWet()
+{
+  FuzzyRuleAntecedent antecedent   = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent dryToNormal  = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent dryToWet     = FuzzyRuleAntecedent();
+  FuzzyRuleAntecedent dryToVeryWet = FuzzyRuleAntecedent();
+
+  dryToNormal.joinWithOR  (&dry,         &normal );
+  dryToWet.joinWithOR     (&dryToNormal, &wet    );
+  dryToVeryWet.joinWithOR (&dryToWet,    &veryWet);
+  antecedent.joinWithAND  (&veryHot,     &dryToVeryWet);
+
+  return antecedent;
+}
+
+
+FuzzyRuleAntecedent crt_antecedent_scorching()
+{
+  FuzzyRuleAntecedent antecedent = FuzzyRuleAntecedent();
+  antecedent.joinSingle(&scorching);
+
+  return antecedent;
+}
+
