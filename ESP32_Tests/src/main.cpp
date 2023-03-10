@@ -35,10 +35,10 @@
  *       - scorching      55  - 100   |   45  :   55  :   100 :   100
  * 
  *    2) Humidity         Min - Max   |   a   :   b   :   c   :   d
- *       - Very dry       0   - 20    |   0   :   0   :   20  :   20
- *       - Dry            20  - 40    |   20  :   40  :   40  :   50
- *       - Normal         40  - 60    |   40  :   50  :   50  :   60
- *       - Wet            50  - 70    |   50  :   60  :   60  :   70
+ *       - Very dry       0   - 20    |   0   :   0   :   0   :   20
+ *       - Dry            20  - 40    |   0   :   20  :   20  :   40
+ *       - Normal         40  - 60    |   20  :   40  :   40  :   60
+ *       - Wet            50  - 70    |   40  :   60  :   60  :   80
  *       - Very wet       60  - 100   |   60  :   80  :   100 :   100
  * 
  * 
@@ -86,6 +86,38 @@
 
 #include "log_service.h"
 #include "DHT_service.h"
+
+
+/* ==================================================
+** Global variables
+**
+** =============================================== */
+
+
+Fuzzy fuzzy = Fuzzy();
+
+// Temperature input
+FuzzySet cold       = FuzzySet(0,   0,   15,  20);
+FuzzySet cool       = FuzzySet(15,  20,  20,  30);
+FuzzySet warm       = FuzzySet(20,  30,  30,  39);
+FuzzySet hot        = FuzzySet(30,  39,  39,  45);
+FuzzySet veryHot    = FuzzySet(39,  45,  45,  55);
+FuzzySet scorching  = FuzzySet(45,  55,  100, 100);
+
+// Humidity input
+FuzzySet veryDry  = FuzzySet(0,   0,   0,   20);
+FuzzySet dry      = FuzzySet(0,   20,  20,  40);
+FuzzySet normal   = FuzzySet(20,  40,  40,  60);
+FuzzySet wet      = FuzzySet(40,  60,  60,  80);
+FuzzySet vertWet  = FuzzySet(60,  100, 100, 100);
+
+// Heat index ouput
+FuzzySet noHeat     = FuzzySet(0,   0,   15,  20);
+FuzzySet comfort    = FuzzySet(15,  20,  20,  30);
+FuzzySet discomfort = FuzzySet(20,  30,  30,  39);
+FuzzySet caution    = FuzzySet(30,  39,  39,  45);
+FuzzySet dangerous  = FuzzySet(39,  45,  45,  55);
+FuzzySet hazardous  = FuzzySet(45,  55,  100, 100);
 
 
 /* ==================================================
