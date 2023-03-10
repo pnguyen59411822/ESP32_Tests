@@ -374,7 +374,7 @@ FuzzyRuleConsequent crt_consequent_noHeat()
 FuzzyRuleConsequent crt_consequent_comfort()
 {
   FuzzyRuleConsequent consequent = FuzzyRuleConsequent();
-  consequent.addOutput(&)comfort;
+  consequent.addOutput(&comfort);
 
   return consequent;
 }
