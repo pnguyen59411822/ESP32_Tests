@@ -109,6 +109,35 @@ FuzzyInput  crt_fuzzyTemp();
 FuzzyInput  crt_fuzzyHumi();
 FuzzyOutput crt_fuzzyHeatIndex();
 
+FuzzyRuleAntecedent crt_antecedent_cold();
+FuzzyRuleAntecedent crt_antecedent_cool();
+FuzzyRuleAntecedent crt_antecedent_warm_AndVeryDryToNormal();
+FuzzyRuleAntecedent crt_antecedent_warm_AndWetToVeryWet();
+FuzzyRuleAntecedent crt_antecedent_hot_AndVeryDryToDry();
+FuzzyRuleAntecedent crt_antecedent_hot_AndNormal();
+FuzzyRuleAntecedent crt_antecedent_hot_AndWetToVeryWet();
+FuzzyRuleAntecedent crt_antecedent_veryHot_AndVeryDry();
+FuzzyRuleAntecedent crt_antecedent_veryHot_AndDryToVeryWet();
+FuzzyRuleAntecedent crt_antecedent_scorching();
+
+FuzzyRuleConsequent crt_consequent_noHeat();
+FuzzyRuleConsequent crt_consequent_comfort();
+FuzzyRuleConsequent crt_consequent_discomfort();
+FuzzyRuleConsequent crt_consequent_caution();
+FuzzyRuleConsequent crt_consequent_dangerous();
+FuzzyRuleConsequent crt_consequent_hazardous();
+
+FuzzyRule crt_rule1();
+FuzzyRule crt_rule2();
+FuzzyRule crt_rule3();
+FuzzyRule crt_rule4();
+FuzzyRule crt_rule5();
+FuzzyRule crt_rule6();
+FuzzyRule crt_rule7();
+FuzzyRule crt_rule8();
+FuzzyRule crt_rule9();
+FuzzyRule crt_rule10();
+
 
 /* ==================================================
 ** Global variables
@@ -218,4 +247,3 @@ FuzzyOutput crt_fuzzyHeatIndex()
 
   return fuzzyOutput;
 }
-
