@@ -136,7 +136,7 @@ FuzzyRule crt_rule6(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *conse
 FuzzyRule crt_rule7(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
 FuzzyRule crt_rule8(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
 FuzzyRule crt_rule9(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule10(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule10();
 
 
 /* ==================================================
@@ -421,7 +421,7 @@ FuzzyRuleConsequent crt_consequent_hazardous()
  *  Then the heat index  is <no heat>
  *  
 */
-FuzzyRule crt_rule1(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule1()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -435,7 +435,7 @@ FuzzyRule crt_rule1(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *  Then the heat index  is <comfort>
  *  
 */
-FuzzyRule crt_rule2(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule2()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -452,7 +452,7 @@ FuzzyRule crt_rule2(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <discomfort>
  *  
 */
-FuzzyRule crt_rule3(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule3()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -469,7 +469,7 @@ FuzzyRule crt_rule3(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <caution>
  *  
 */
-FuzzyRule crt_rule4(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule4()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -486,7 +486,7 @@ FuzzyRule crt_rule4(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <caution>
  *  
 */
-FuzzyRule crt_rule5(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule5()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -503,7 +503,7 @@ FuzzyRule crt_rule5(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <dangerous>
  *  
 */
-FuzzyRule crt_rule6(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule6()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -520,7 +520,7 @@ FuzzyRule crt_rule6(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <hazardous>
  *  
 */
-FuzzyRule crt_rule7(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule7()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -537,7 +537,7 @@ FuzzyRule crt_rule7(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <dangerous>
  *  
 */
-FuzzyRule crt_rule8(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule8()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -554,7 +554,7 @@ FuzzyRule crt_rule8(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <hazardous>
  *  
 */
-FuzzyRule crt_rule9(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule9()
 {
   FuzzyRule rule = FuzzyRule();
 
@@ -570,7 +570,7 @@ FuzzyRule crt_rule9(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *conseq
  *     - The heat index  is <hazardous>
  *  
 */
-FuzzyRule crt_rule10(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+FuzzyRule crt_rule10()
 {
   FuzzyRule rule = FuzzyRule();
 
