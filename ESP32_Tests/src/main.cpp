@@ -89,6 +89,28 @@
 
 
 /* ==================================================
+** Macro definition
+**
+** =============================================== */
+
+
+#define INDEX_FUZZY_TEMP        1
+#define INDEX_FUZZY_HUMI        2
+#define INDEX_FUZZY_HEAT_INDEX  3
+
+
+/* ==================================================
+** Function declaration
+**
+** =============================================== */
+
+
+FuzzyInput  crt_fuzzyTemp();
+FuzzyInput  crt_fuzzyHumi();
+FuzzyOutput crt_fuzzyHeatIndex();
+
+
+/* ==================================================
 ** Global variables
 **
 ** =============================================== */
@@ -109,7 +131,7 @@ FuzzySet veryDry  = FuzzySet(0,   0,   0,   20);
 FuzzySet dry      = FuzzySet(0,   20,  20,  40);
 FuzzySet normal   = FuzzySet(20,  40,  40,  60);
 FuzzySet wet      = FuzzySet(40,  60,  60,  80);
-FuzzySet vertWet  = FuzzySet(60,  100, 100, 100);
+FuzzySet veryWet  = FuzzySet(60,  100, 100, 100);
 
 // Heat index ouput
 FuzzySet noHeat     = FuzzySet(0,   0,   15,  20);
@@ -130,6 +152,15 @@ void setup()
 {
   Log_init();
   DHT_init();
+
+  FuzzyInput  fuzzyTemp      = crt_fuzzyTemp();
+  FuzzyInput  fuzzyHumi      = crt_fuzzyHumi();
+  FuzzyOutput fuzzyHeatIndex = crt_fuzzyHeatIndex();
+
+  fuzzy.addFuzzyInput (&fuzzyTemp);
+  fuzzy.addFuzzyInput (&fuzzyHumi);
+  fuzzy.addFuzzyOutput(&fuzzyHeatIndex);
+
 }
 
 
@@ -137,3 +168,54 @@ void loop()
 {
   DHT_upd();
 }
+
+
+/* ==================================================
+** Function definition
+**
+** =============================================== */
+
+
+FuzzyInput  crt_fuzzyTemp()
+{
+  FuzzyInput fuzzyInput = FuzzyInput(INDEX_FUZZY_TEMP);
+
+  fuzzyInput.addFuzzySet(&cold);
+  fuzzyInput.addFuzzySet(&cool);
+  fuzzyInput.addFuzzySet(&warm);
+  fuzzyInput.addFuzzySet(&hot);
+  fuzzyInput.addFuzzySet(&veryHot);
+  fuzzyInput.addFuzzySet(&scorching);
+
+  return fuzzyInput;
+}
+
+
+FuzzyInput  crt_fuzzyHumi()
+{
+  FuzzyInput fuzzyInput = FuzzyInput(INDEX_FUZZY_HUMI);
+
+  fuzzyInput.addFuzzySet(&veryDry);
+  fuzzyInput.addFuzzySet(&dry);
+  fuzzyInput.addFuzzySet(&normal);
+  fuzzyInput.addFuzzySet(&wet);
+  fuzzyInput.addFuzzySet(&veryWet);
+
+  return fuzzyInput;
+}
+
+
+FuzzyOutput crt_fuzzyHeatIndex()
+{
+  FuzzyOutput fuzzyOutput = FuzzyOutput(INDEX_FUZZY_HEAT_INDEX);
+
+  fuzzyOutput.addFuzzySet(&noHeat);
+  fuzzyOutput.addFuzzySet(&comfort);
+  fuzzyOutput.addFuzzySet(&discomfort);
+  fuzzyOutput.addFuzzySet(&caution);
+  fuzzyOutput.addFuzzySet(&dangerous);
+  fuzzyOutput.addFuzzySet(&hazardous);
+
+  return fuzzyOutput;
+}
+
