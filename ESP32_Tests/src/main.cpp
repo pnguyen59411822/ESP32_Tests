@@ -94,9 +94,12 @@
 ** =============================================== */
 
 
+// Index of fuzzy input
 #define INDEX_FUZZY_TEMP        1
 #define INDEX_FUZZY_HUMI        2
-#define INDEX_FUZZY_HEAT_INDEX  3
+
+// Index of fuzzy output
+#define INDEX_FUZZY_HEAT_INDEX  1
 
 
 /* ==================================================
@@ -127,15 +130,15 @@ FuzzyRuleConsequent crt_consequent_caution();
 FuzzyRuleConsequent crt_consequent_dangerous();
 FuzzyRuleConsequent crt_consequent_hazardous();
 
-FuzzyRule crt_rule1(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule2(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule3(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule4(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule5(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule6(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule7(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule8(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
-FuzzyRule crt_rule9(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule1();
+FuzzyRule crt_rule2();
+FuzzyRule crt_rule3();
+FuzzyRule crt_rule4();
+FuzzyRule crt_rule5();
+FuzzyRule crt_rule6();
+FuzzyRule crt_rule7();
+FuzzyRule crt_rule8();
+FuzzyRule crt_rule9();
 FuzzyRule crt_rule10();
 
 
@@ -218,6 +221,24 @@ void setup()
 void loop() 
 {
   DHT_upd();
+
+  float tempC = DHT_get_tempC();
+  float humi  = DHT_get_humi();
+
+  static float tempC_prev = tempC;
+  static float humi_prev  = humi;
+
+  if(tempC == tempC_prev && humi == tempC_prev){
+    return;
+  }
+
+  fuzzy.setInput(INDEX_FUZZY_TEMP, tempC);
+  fuzzy.setInput(INDEX_FUZZY_HUMI, humi);
+
+  fuzzy.fuzzify();
+
+  float heatIndex = fuzzy.defuzzify(INDEX_FUZZY_HEAT_INDEX);
+  LOG_I("[Fuzzy] heat index: %.2f \t | \t [DHT] heat index: %.2f\n", heatIndex, DHT_get_heatIndexC());
 }
 
 

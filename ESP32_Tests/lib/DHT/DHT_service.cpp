@@ -100,7 +100,7 @@ void DHT_upd()
     // Check if any reads failed and exit early (to try again).
     if (isnan(h) || isnan(t) || isnan(f))
     {
-        LOG_E("[DHT] Failed to read from DHT sensor!");
+        // LOG_E("[DHT] Failed to read from DHT sensor!");
         return;
     }
 
@@ -123,4 +123,10 @@ float DHT_get_tempC()
 float DHT_get_humi()
 {
     return huminity;
+}
+
+
+float DHT_get_heatIndexC()
+{
+    return hiC;
 }

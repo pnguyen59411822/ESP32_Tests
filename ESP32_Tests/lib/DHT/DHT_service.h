@@ -40,6 +40,7 @@ void DHT_upd();
 
 float DHT_get_tempC();
 float DHT_get_humi();
+float DHT_get_heatIndexC();
 
 
 /* ==================================================
