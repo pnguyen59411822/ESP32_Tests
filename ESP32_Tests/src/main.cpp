@@ -6,7 +6,7 @@
 
 
 #include <Arduino.h>
-#define DHT_PIN 34
+#define DHT_PIN 23
 
 
 #ifdef USING_LIBRARY_ADAFRUIT
