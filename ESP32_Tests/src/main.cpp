@@ -127,16 +127,16 @@ FuzzyRuleConsequent crt_consequent_caution();
 FuzzyRuleConsequent crt_consequent_dangerous();
 FuzzyRuleConsequent crt_consequent_hazardous();
 
-FuzzyRule crt_rule1();
-FuzzyRule crt_rule2();
-FuzzyRule crt_rule3();
-FuzzyRule crt_rule4();
-FuzzyRule crt_rule5();
-FuzzyRule crt_rule6();
-FuzzyRule crt_rule7();
-FuzzyRule crt_rule8();
-FuzzyRule crt_rule9();
-FuzzyRule crt_rule10();
+FuzzyRule crt_rule1(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule2(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule3(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule4(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule5(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule6(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule7(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule8(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule9(FuzzyRuleAntecedent  *antecedent, FuzzyRuleConsequent *consequent);
+FuzzyRule crt_rule10(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent);
 
 
 /* ==================================================
@@ -415,4 +415,153 @@ FuzzyRuleConsequent crt_consequent_hazardous()
   return consequent;
 }
 
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule1(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule2(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule3(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule4(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule5(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule6(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule7(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule8(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule9(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
+
+
+/**
+ *  If
+ *    - 
+ *  Then
+ *  
+*/
+FuzzyRule crt_rule10(FuzzyRuleAntecedent *antecedent, FuzzyRuleConsequent *consequent)
+{
+  FuzzyRule rule = FuzzyRule();
+
+
+  return rule;
+}
 
