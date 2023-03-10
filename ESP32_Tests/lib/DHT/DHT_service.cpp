@@ -112,3 +112,15 @@ void DHT_upd()
 
     LOG_I("[DHT][UPD] Humidity: %.2f% | Temperature: %.2f°C  %.2f°F | Head index: %.2f°C  %.2f°F\n", h, t, f, hiC, hiF);
 }
+
+
+float DHT_get_tempC()
+{
+    return tempC;
+}
+
+
+float DHT_get_humi()
+{
+    return huminity;
+}
