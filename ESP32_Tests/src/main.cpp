@@ -94,11 +94,11 @@ void setup()
   FuzzyRuleAntecedent ifDistanceNearAndSpeedQuickOrTemperatureCold = FuzzyRuleAntecedent();
   ifDistanceNearAndSpeedQuickOrTemperatureCold.joinWithOR(&distanceNearAndSpeedQuick, &temperatureCold);
 
-  FuzzyRuleConsequent *thenRisMaximumAndSpeedSlow = new FuzzyRuleConsequent();
-  thenRisMaximumAndSpeedSlow->addOutput(&maximum);
-  thenRisMaximumAndSpeedSlow->addOutput(&slowOutput);
+  FuzzyRuleConsequent thenRisMaximumAndSpeedSlow = FuzzyRuleConsequent();
+  thenRisMaximumAndSpeedSlow.addOutput(&maximum);
+  thenRisMaximumAndSpeedSlow.addOutput(&slowOutput);
 
-  FuzzyRule *fuzzyRule1 = new FuzzyRule(1, &ifDistanceNearAndSpeedQuickOrTemperatureCold, thenRisMaximumAndSpeedSlow);
+  FuzzyRule *fuzzyRule1 = new FuzzyRule(1, &ifDistanceNearAndSpeedQuickOrTemperatureCold, &thenRisMaximumAndSpeedSlow);
   fuzzy.addFuzzyRule(fuzzyRule1);
 
   // Building FuzzyRule
