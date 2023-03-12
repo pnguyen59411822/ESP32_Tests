@@ -173,6 +173,15 @@ FuzzySet caution    = FuzzySet(30,  39,  39,  45);
 FuzzySet dangerous  = FuzzySet(39,  45,  45,  55);
 FuzzySet hazardous  = FuzzySet(45,  55,  100, 100);
 
+float tc      = 20;
+float tc_prev = tc;
+
+float humi      = 95;
+float humi_prev = humi;
+
+const uint32_t TIME_GET_RANDOM  = 5000;
+      uint32_t intv_get_random  = 0;
+
 
 /* ==================================================
 ** Main
@@ -184,6 +193,8 @@ void setup()
 {
   Log_init();
   DHT_init();
+
+  randomSeed(analogRead(0));
 
   FuzzyInput  fuzzyTemp      = crt_fuzzyTemp();
   FuzzyInput  fuzzyHumi      = crt_fuzzyHumi();
@@ -222,20 +233,32 @@ void loop()
 {
   DHT_upd();
 
-  float tempC = DHT_get_tempC();
-  float humi  = DHT_get_humi();
-
-  static float tempC_prev = tempC;
-  static float humi_prev  = humi;
-
-  if(tempC == tempC_prev && humi == tempC_prev){
+  if(millis() - intv_get_random < TIME_GET_RANDOM){
+    tc   = DHT_get_tempC();
+    humi = DHT_get_humi();
     return;
   }
 
-  fuzzy.setInput(INDEX_FUZZY_TEMP, tempC);
-  fuzzy.setInput(INDEX_FUZZY_HUMI, humi);
+  else{
+    tc   = random(0, 100);
+    humi = random(0, 100);
+
+    intv_get_random = millis();
+    LOG_I("[Fuzzy] get temp input from random");
+  }
+
+  if (tc == tc_prev && humi == humi_prev){
+    return;
+  }
+
+  tc_prev = tc;
+  humi_prev = humi;
+
+  fuzzy.setInput(INDEX_FUZZY_TEMP, tc);   LOG_I("[Fuzzy] set input temp: %d", tc);
+  fuzzy.setInput(INDEX_FUZZY_HUMI, humi); LOG_I("[Fuzzy] set input humi: %d", humi);
 
   fuzzy.fuzzify();
+  LOG_I("[Fuzzy] fuzzified");
 
   float heatIndex = fuzzy.defuzzify(INDEX_FUZZY_HEAT_INDEX);
   LOG_I("[Fuzzy] heat index: %.2f \t | \t [DHT] heat index: %.2f\n", heatIndex, DHT_get_heatIndexC());

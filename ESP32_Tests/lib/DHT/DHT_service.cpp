@@ -110,7 +110,7 @@ void DHT_upd()
     hiC         = dht.computeHeatIndex(t, h, false);
     hiF         = dht.computeHeatIndex(t, h);
 
-    LOG_I("[DHT][UPD] Humidity: %.2f% | Temperature: %.2f°C  %.2f°F | Head index: %.2f°C  %.2f°F\n", h, t, f, hiC, hiF);
+    // LOG_I("[DHT][UPD] Humidity: %.2f% | Temperature: %.2f°C  %.2f°F | Head index: %.2f°C  %.2f°F\n", h, t, f, hiC, hiF);
 }
 
 

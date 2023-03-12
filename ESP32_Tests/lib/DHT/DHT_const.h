@@ -17,7 +17,7 @@
 ** =============================================== */
 
 
-#define DHT_PIN     34
+#define DHT_PIN     23
 #define DHT_TYPE    DHT11
 
 
