@@ -45,60 +45,60 @@ void setup()
   // Every setup must occur in the function setup()
 
   // FuzzyInput
-  FuzzyInput distance = FuzzyInput(1);
+  FuzzyInput *distance = new FuzzyInput(1);
 
-  distance.addFuzzySet(&near);
-  distance.addFuzzySet(&safe);
-  distance.addFuzzySet(&distant);
-  fuzzy.addFuzzyInput(&distance);
-
-  // FuzzyInput
-  FuzzyInput speedInput = FuzzyInput(2);
-
-  speedInput.addFuzzySet(&stopedInput);
-  speedInput.addFuzzySet(&slowInput);
-  speedInput.addFuzzySet(&normalInput);
-  speedInput.addFuzzySet(&quickInput);
-  fuzzy.addFuzzyInput(&speedInput);
+  distance->addFuzzySet(&near);
+  distance->addFuzzySet(&safe);
+  distance->addFuzzySet(&distant);
+  fuzzy.addFuzzyInput(distance);
 
   // FuzzyInput
-  FuzzyInput temperature = FuzzyInput(3);
+  FuzzyInput *speedInput = new FuzzyInput(2);
 
-  temperature.addFuzzySet(&cold);
-  temperature.addFuzzySet(&good);
-  temperature.addFuzzySet(&hot);
-  fuzzy.addFuzzyInput(&temperature);
+  speedInput->addFuzzySet(&stopedInput);
+  speedInput->addFuzzySet(&slowInput);
+  speedInput->addFuzzySet(&normalInput);
+  speedInput->addFuzzySet(&quickInput);
+  fuzzy.addFuzzyInput(speedInput);
+
+  // FuzzyInput
+  FuzzyInput *temperature = new FuzzyInput(3);
+
+  temperature->addFuzzySet(&cold);
+  temperature->addFuzzySet(&good);
+  temperature->addFuzzySet(&hot);
+  fuzzy.addFuzzyInput(temperature);
 
   // FuzzyOutput
-  FuzzyOutput risk = FuzzyOutput(1);
+  FuzzyOutput *risk = new FuzzyOutput(1);
 
-  risk.addFuzzySet(&minimum);
-  risk.addFuzzySet(&average);
-  risk.addFuzzySet(&maximum);
-  fuzzy.addFuzzyOutput(&risk);
+  risk->addFuzzySet(&minimum);
+  risk->addFuzzySet(&average);
+  risk->addFuzzySet(&maximum);
+  fuzzy.addFuzzyOutput(risk);
 
   // FuzzyOutput
-  FuzzyOutput speedOutput = FuzzyOutput(2);
+  FuzzyOutput *speedOutput = new FuzzyOutput(2);
 
-  speedOutput.addFuzzySet(&stopedOutput);
-  speedOutput.addFuzzySet(&slowOutput);
-  speedOutput.addFuzzySet(&normalOutput);
-  speedOutput.addFuzzySet(&quickOutput);
-  fuzzy.addFuzzyOutput(&speedOutput);
+  speedOutput->addFuzzySet(&stopedOutput);
+  speedOutput->addFuzzySet(&slowOutput);
+  speedOutput->addFuzzySet(&normalOutput);
+  speedOutput->addFuzzySet(&quickOutput);
+  fuzzy.addFuzzyOutput(speedOutput);
 
   // Building FuzzyRule
-  FuzzyRuleAntecedent *distanceNearAndSpeedQuick = new FuzzyRuleAntecedent();
-  distanceNearAndSpeedQuick->joinWithAND(&near, &quickInput);
-  FuzzyRuleAntecedent *temperatureCold = new FuzzyRuleAntecedent();
-  temperatureCold->joinSingle(&cold);
-  FuzzyRuleAntecedent *ifDistanceNearAndSpeedQuickOrTemperatureCold = new FuzzyRuleAntecedent();
-  ifDistanceNearAndSpeedQuickOrTemperatureCold->joinWithOR(distanceNearAndSpeedQuick, temperatureCold);
+  FuzzyRuleAntecedent distanceNearAndSpeedQuick = FuzzyRuleAntecedent();
+  distanceNearAndSpeedQuick.joinWithAND(&near, &quickInput);
+  FuzzyRuleAntecedent temperatureCold = FuzzyRuleAntecedent();
+  temperatureCold.joinSingle(&cold);
+  FuzzyRuleAntecedent ifDistanceNearAndSpeedQuickOrTemperatureCold = FuzzyRuleAntecedent();
+  ifDistanceNearAndSpeedQuickOrTemperatureCold.joinWithOR(&distanceNearAndSpeedQuick, &temperatureCold);
 
   FuzzyRuleConsequent *thenRisMaximumAndSpeedSlow = new FuzzyRuleConsequent();
   thenRisMaximumAndSpeedSlow->addOutput(&maximum);
   thenRisMaximumAndSpeedSlow->addOutput(&slowOutput);
 
-  FuzzyRule *fuzzyRule1 = new FuzzyRule(1, ifDistanceNearAndSpeedQuickOrTemperatureCold, thenRisMaximumAndSpeedSlow);
+  FuzzyRule *fuzzyRule1 = new FuzzyRule(1, &ifDistanceNearAndSpeedQuickOrTemperatureCold, thenRisMaximumAndSpeedSlow);
   fuzzy.addFuzzyRule(fuzzyRule1);
 
   // Building FuzzyRule
@@ -150,47 +150,47 @@ void loop()
   fuzzy.fuzzify();
 
   Serial.println("Input: ");
-  Serial.print("\tDistance: Near. ");
+  Serial.print("\tDistance: Near-> ");
   Serial.print(near.getPertinence());
-  Serial.print(", Safe. ");
+  Serial.print(", Safe-> ");
   Serial.print(safe.getPertinence());
-  Serial.print(", Distant. ");
+  Serial.print(", Distant-> ");
   Serial.println(distant.getPertinence());
 
-  Serial.print("\tSpeed: Stoped. ");
+  Serial.print("\tSpeed: Stoped-> ");
   Serial.print(stopedInput.getPertinence());
-  Serial.print(",  Slow. ");
+  Serial.print(",  Slow-> ");
   Serial.print(slowInput.getPertinence());
-  Serial.print(",  Normal. ");
+  Serial.print(",  Normal-> ");
   Serial.print(normalInput.getPertinence());
-  Serial.print(",  Quick. ");
+  Serial.print(",  Quick-> ");
   Serial.println(quickInput.getPertinence());
 
-  Serial.print("\tTemperature: Cold. ");
+  Serial.print("\tTemperature: Cold-> ");
   Serial.print(cold.getPertinence());
-  Serial.print(", Good. ");
+  Serial.print(", Good-> ");
   Serial.print(good.getPertinence());
-  Serial.print(", Hot. ");
+  Serial.print(", Hot-> ");
   Serial.println(hot.getPertinence());
 
   float output1 = fuzzy.defuzzify(1);
   float output2 = fuzzy.defuzzify(2);
 
   Serial.println("Output: ");
-  Serial.print("\tRisk: Minimum. ");
+  Serial.print("\tRisk: Minimum-> ");
   Serial.print(minimum.getPertinence());
-  Serial.print(", Average. ");
+  Serial.print(", Average-> ");
   Serial.print(average.getPertinence());
-  Serial.print(", Maximum. ");
+  Serial.print(", Maximum-> ");
   Serial.println(maximum.getPertinence());
 
-  Serial.print("\tSpeed: Stoped. ");
+  Serial.print("\tSpeed: Stoped-> ");
   Serial.print(stopedOutput.getPertinence());
-  Serial.print(",  Slow. ");
+  Serial.print(",  Slow-> ");
   Serial.print(slowOutput.getPertinence());
-  Serial.print(",  Normal. ");
+  Serial.print(",  Normal-> ");
   Serial.print(normalOutput.getPertinence());
-  Serial.print(",  Quick. ");
+  Serial.print(",  Quick-> ");
   Serial.println(quickOutput.getPertinence());
 
   Serial.println("Result: ");
