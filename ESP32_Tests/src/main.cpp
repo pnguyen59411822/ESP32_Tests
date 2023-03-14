@@ -3,19 +3,19 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 
-/*#include <SPI.h>
-#define BME_SCK 18
-#define BME_MISO 19
-#define BME_MOSI 23
-#define BME_CS 5*/
+// #include <SPI.h>
+// #define BME_SCK   18
+// #define BME_MISO  19
+// #define BME_MOSI  23
+// #define BME_CS    5
 
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 void printValues();
 
 Adafruit_BME280 bme; // I2C
-//Adafruit_BME280 bme(BME_CS); // hardware SPI
-//Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
+// Adafruit_BME280 bme(BME_CS); // hardware SPI
+// Adafruit_BME280 bme(BME_CS, BME_MOSI, BME_MISO, BME_SCK); // software SPI
 
 unsigned long delayTime;
 
@@ -28,6 +28,7 @@ void setup() {
   // default settings
   // (you can also pass in a Wire library object like &Wire2)
   status = bme.begin(0x76);  
+  // status = bme.begin();  
   if (!status) {
     Serial.println("Could not find a valid BME280 sensor, check wiring!");
     while (1);
