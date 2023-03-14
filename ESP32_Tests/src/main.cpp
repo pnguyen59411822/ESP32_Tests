@@ -150,6 +150,10 @@ FuzzyRule crt_rule10();
 
 Fuzzy fuzzy = Fuzzy();
 
+FuzzyInput  fuzzyTemp      = crt_fuzzyTemp();
+FuzzyInput  fuzzyHumi      = crt_fuzzyHumi();
+FuzzyOutput fuzzyHeatIndex = crt_fuzzyHeatIndex();
+
 // Temperature input
 FuzzySet cold       = FuzzySet(0,   0,   15,  20);
 FuzzySet cool       = FuzzySet(15,  20,  20,  30);
@@ -172,6 +176,35 @@ FuzzySet discomfort = FuzzySet(20,  30,  30,  39);
 FuzzySet caution    = FuzzySet(30,  39,  39,  45);
 FuzzySet dangerous  = FuzzySet(39,  45,  45,  55);
 FuzzySet hazardous  = FuzzySet(45,  55,  100, 100);
+
+FuzzyRuleAntecedent antecedent_rule1  = crt_antecedent_cold();
+FuzzyRuleAntecedent antecedent_rule2  = crt_antecedent_cool();
+FuzzyRuleAntecedent antecedent_rule3  = crt_antecedent_warm_AndVeryDryToNormal();
+FuzzyRuleAntecedent antecedent_rule4  = crt_antecedent_warm_AndWetToVeryWet();
+FuzzyRuleAntecedent antecedent_rule5  = crt_antecedent_hot_AndVeryDryToDry();
+FuzzyRuleAntecedent antecedent_rule6  = crt_antecedent_hot_AndNormal();
+FuzzyRuleAntecedent antecedent_rule7  = crt_antecedent_hot_AndWetToVeryWet();
+FuzzyRuleAntecedent antecedent_rule8  = crt_antecedent_veryHot_AndVeryDry();
+FuzzyRuleAntecedent antecedent_rule9  = crt_antecedent_veryHot_AndDryToVeryWet();
+FuzzyRuleAntecedent antecedent_rule10 = crt_antecedent_scorching();
+
+FuzzyRuleConsequent consequent_noHeat     = crt_consequent_noHeat();
+FuzzyRuleConsequent consequent_comfort    = crt_consequent_comfort();
+FuzzyRuleConsequent consequent_discomfort = crt_consequent_discomfort();
+FuzzyRuleConsequent consequent_caution    = crt_consequent_caution();
+FuzzyRuleConsequent consequent_dangerous  = crt_consequent_dangerous();
+FuzzyRuleConsequent consequent_hazardous  = crt_consequent_hazardous();
+
+FuzzyRule fuzzyRule1  = crt_rule1();
+FuzzyRule fuzzyRule2  = crt_rule2();
+FuzzyRule fuzzyRule3  = crt_rule3();
+FuzzyRule fuzzyRule4  = crt_rule4();
+FuzzyRule fuzzyRule5  = crt_rule5();
+FuzzyRule fuzzyRule6  = crt_rule6();
+FuzzyRule fuzzyRule7  = crt_rule7();
+FuzzyRule fuzzyRule8  = crt_rule8();
+FuzzyRule fuzzyRule9  = crt_rule9();
+FuzzyRule fuzzyRule10 = crt_rule10();
 
 float tc      = 20;
 float tc_prev = tc;
@@ -196,24 +229,9 @@ void setup()
 
   randomSeed(analogRead(0));
 
-  FuzzyInput  fuzzyTemp      = crt_fuzzyTemp();
-  FuzzyInput  fuzzyHumi      = crt_fuzzyHumi();
-  FuzzyOutput fuzzyHeatIndex = crt_fuzzyHeatIndex();
-
   fuzzy.addFuzzyInput (&fuzzyTemp);
   fuzzy.addFuzzyInput (&fuzzyHumi);
   fuzzy.addFuzzyOutput(&fuzzyHeatIndex);
-
-  FuzzyRule fuzzyRule1  = crt_rule1();
-  FuzzyRule fuzzyRule2  = crt_rule2();
-  FuzzyRule fuzzyRule3  = crt_rule3();
-  FuzzyRule fuzzyRule4  = crt_rule4();
-  FuzzyRule fuzzyRule5  = crt_rule5();
-  FuzzyRule fuzzyRule6  = crt_rule6();
-  FuzzyRule fuzzyRule7  = crt_rule7();
-  FuzzyRule fuzzyRule8  = crt_rule8();
-  FuzzyRule fuzzyRule9  = crt_rule9();
-  FuzzyRule fuzzyRule10 = crt_rule10();
 
   fuzzy.addFuzzyRule(&fuzzyRule1);
   fuzzy.addFuzzyRule(&fuzzyRule2);
@@ -240,8 +258,8 @@ void loop()
   }
 
   else{
-    tc   = random(0, 100);
-    humi = random(0, 100);
+    tc   = random(21, 43);
+    humi = random(20, 100);
 
     intv_get_random = millis();
     LOG_I("[Fuzzy] get temp input from random");
@@ -254,8 +272,8 @@ void loop()
   tc_prev = tc;
   humi_prev = humi;
 
-  fuzzy.setInput(INDEX_FUZZY_TEMP, tc);   LOG_I("[Fuzzy] set input temp: %d", tc);
-  fuzzy.setInput(INDEX_FUZZY_HUMI, humi); LOG_I("[Fuzzy] set input humi: %d", humi);
+  fuzzy.setInput(INDEX_FUZZY_TEMP, tc);   LOG_I("[Fuzzy] set input temp: %.2f", tc);
+  fuzzy.setInput(INDEX_FUZZY_HUMI, humi); LOG_I("[Fuzzy] set input humi: %.2f", humi);
 
   fuzzy.fuzzify();
   LOG_I("[Fuzzy] fuzzified");
@@ -489,11 +507,7 @@ FuzzyRuleConsequent crt_consequent_hazardous()
 */
 FuzzyRule crt_rule1()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_cold();
-  FuzzyRuleConsequent consequent = crt_consequent_noHeat();
-  FuzzyRule           rule       = FuzzyRule(1, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(1, &antecedent_rule1, &consequent_noHeat);
 }
 
 
@@ -504,11 +518,7 @@ FuzzyRule crt_rule1()
 */
 FuzzyRule crt_rule2()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_cool();
-  FuzzyRuleConsequent consequent = crt_consequent_comfort();
-  FuzzyRule           rule       = FuzzyRule(2, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(2, &antecedent_rule2, &consequent_comfort);
 }
 
 
@@ -522,11 +532,7 @@ FuzzyRule crt_rule2()
 */
 FuzzyRule crt_rule3()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_warm_AndVeryDryToNormal();
-  FuzzyRuleConsequent consequent = crt_consequent_discomfort();
-  FuzzyRule           rule       = FuzzyRule(3, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(3, &antecedent_rule3, &consequent_discomfort);
 }
 
 
@@ -540,11 +546,7 @@ FuzzyRule crt_rule3()
 */
 FuzzyRule crt_rule4()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_warm_AndWetToVeryWet();
-  FuzzyRuleConsequent consequent = crt_consequent_caution();
-  FuzzyRule           rule       = FuzzyRule(4, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(4, &antecedent_rule4, &consequent_caution);
 }
 
 
@@ -558,11 +560,7 @@ FuzzyRule crt_rule4()
 */
 FuzzyRule crt_rule5()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_hot_AndVeryDryToDry();
-  FuzzyRuleConsequent consequent = crt_consequent_caution();
-  FuzzyRule           rule       = FuzzyRule(5, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(5, &antecedent_rule5, &consequent_caution);
 }
 
 
@@ -576,11 +574,7 @@ FuzzyRule crt_rule5()
 */
 FuzzyRule crt_rule6()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_hot_AndNormal();
-  FuzzyRuleConsequent consequent = crt_consequent_dangerous();
-  FuzzyRule           rule       = FuzzyRule(6, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(6, &antecedent_rule6, &consequent_dangerous);
 }
 
 
@@ -594,11 +588,7 @@ FuzzyRule crt_rule6()
 */
 FuzzyRule crt_rule7()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_hot_AndWetToVeryWet();
-  FuzzyRuleConsequent consequent = crt_consequent_hazardous();
-  FuzzyRule           rule       = FuzzyRule(7, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(7, &antecedent_rule7, &consequent_hazardous);
 }
 
 
@@ -612,11 +602,7 @@ FuzzyRule crt_rule7()
 */
 FuzzyRule crt_rule8()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_veryHot_AndVeryDry();
-  FuzzyRuleConsequent consequent = crt_consequent_dangerous();
-  FuzzyRule           rule       = FuzzyRule(8, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(8, &antecedent_rule8, &consequent_dangerous);
 }
 
 
@@ -630,11 +616,7 @@ FuzzyRule crt_rule8()
 */
 FuzzyRule crt_rule9()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_veryHot_AndDryToVeryWet();
-  FuzzyRuleConsequent consequent = crt_consequent_hazardous();
-  FuzzyRule           rule       = FuzzyRule(9, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(9, &antecedent_rule9, &consequent_hazardous);
 }
 
 
@@ -647,10 +629,6 @@ FuzzyRule crt_rule9()
 */
 FuzzyRule crt_rule10()
 {
-  FuzzyRuleAntecedent antecedent = crt_antecedent_scorching();
-  FuzzyRuleConsequent consequent = crt_consequent_hazardous();
-  FuzzyRule           rule       = FuzzyRule(10, &antecedent, &consequent);
-
-  return rule;
+  return FuzzyRule(10, &antecedent_rule10, &consequent_hazardous);
 }
 
