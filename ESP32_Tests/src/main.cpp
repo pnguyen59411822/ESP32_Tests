@@ -12,6 +12,7 @@
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 void printValues();
+void Scanner ();
 
 Adafruit_BME280 bme; // I2C
 // Adafruit_BME280 bme(BME_CS); // hardware SPI
@@ -21,6 +22,9 @@ unsigned long delayTime;
 
 void setup() {
   Serial.begin(115200);
+  Wire.begin();
+
+  Scanner();
   Serial.println(F("BME280 test"));
 
   bool status;
@@ -69,4 +73,37 @@ void printValues() {
   Serial.println(" %");
 
   Serial.println();
+}
+
+void Scanner ()
+{
+  byte error, address;
+  int nDevices;
+  Serial.println("Scanning...");
+  nDevices = 0;
+  for(address = 1; address < 127; address++ ) {
+    Wire.beginTransmission(address);
+    error = Wire.endTransmission();
+    if (error == 0) {
+      Serial.print("I2C device found at address 0x");
+      if (address<16) {
+        Serial.print("0");
+      }
+      Serial.println(address,HEX);
+      nDevices++;
+    }
+    else if (error==4) {
+      Serial.print("Unknow error at address 0x");
+      if (address<16) {
+        Serial.print("0");
+      }
+      Serial.println(address,HEX);
+    }    
+  }
+  if (nDevices == 0) {
+    Serial.println("No I2C devices found\n");
+  }
+  else {
+    Serial.println("done\n");
+  }
 }
