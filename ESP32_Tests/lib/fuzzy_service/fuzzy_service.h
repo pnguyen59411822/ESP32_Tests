@@ -35,8 +35,11 @@
 ** =============================================== */
 
 
-void Fuzzy_init();
+void  Fuzzy_init();
 float Fuzzy_get_ouput(float input1, float input2);
+
+float Fuzzy_random_input1();
+float Fuzzy_random_input2();
 
 
 /* ==================================================

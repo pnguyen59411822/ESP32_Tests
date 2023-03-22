@@ -69,6 +69,8 @@ FuzzyRule           rules      [num_rules];
 
 void Fuzzy_init()
 {
+  randomSeed(analogRead(0));
+
   init_fuzzySets_input1();
   init_fuzzySets_input2();
   init_fuzzySets_output();
@@ -86,6 +88,18 @@ float Fuzzy_get_ouput(float input1, float input2)
 
     fuzzy.fuzzify();
     return fuzzy.defuzzify(INDEX_FUZZY_OUTPUT);
+}
+
+
+float Fuzzy_random_input1()
+{
+    return random(input1_min, input1_max);
+}
+
+
+float Fuzzy_random_input2()
+{
+    return random(input2_min, input2_max);
 }
 
 

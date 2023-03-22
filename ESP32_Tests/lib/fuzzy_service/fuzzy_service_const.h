@@ -57,4 +57,10 @@ const int num_fuzzySets_input2 = sizeof(membershipFunctions_input2) / sizeof(mem
 const int num_fuzzySets_output = sizeof(membershipFunctions_output) / sizeof(membershipFunctions_output[0])-2;
 const int num_rules            = sizeof(consequents_value) / sizeof(consequents_value[0]);
 
+const float input1_min = membershipFunctions_input1[1];
+const float input1_max = membershipFunctions_input1[num_fuzzySets_input1-2];
+
+const float input2_min = membershipFunctions_input2[1];
+const float input2_max = membershipFunctions_input2[num_fuzzySets_input1-2];
+
 #endif
