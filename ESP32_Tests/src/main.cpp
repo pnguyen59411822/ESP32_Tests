@@ -15,13 +15,10 @@ void setup()
 
 void loop()
 {
-  // get random entrances
   float input1 = Fuzzy_random_input1();
   float input2 = Fuzzy_random_input2();
   float output = Fuzzy_get_ouput(input1, input2);
 
-  Serial.printf("Input 1: %.2f | Input 2: %.2f | Output: %.2f", input1, input2, output);
-
-  // wait 12 seconds
+  Serial.printf("Input 1: %.2f | Input 2: %.2f | Output: %.2f\n", input1, input2, output);
   delay(8000);
 }
